@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "524949524658",
+    "project_id": "naqliatsa",
+    "storage_bucket": "naqliatsa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524949524658:android:ef803061a3c8d9a51b39ab",
+        "android_client_info": {
+          "package_name": "at.murtadha.naqliatsa_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9sS_6xdLpVuzASaK6_WJNaXNvFHbjLEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524949524658:android:25fcd8c2f62234301b39ab",
+        "android_client_info": {
+          "package_name": "at.murtadha2.naqliatsa_app2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9sS_6xdLpVuzASaK6_WJNaXNvFHbjLEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

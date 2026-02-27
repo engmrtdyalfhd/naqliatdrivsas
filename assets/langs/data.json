@@ -1,0 +1,636 @@
+{
+  "en": [
+    {
+      "truck_id": 1,
+      "truck_name": "Trailer (+20 Tons)",
+      "truck_data": [
+        {
+          "carrier_id": 101,
+          "carrier_type": "High Sides",
+          "carrier_features": [
+            { "feature_id": 1011, "name": "12 m" },
+            { "feature_id": 1012, "name": "13.6 m" },
+            { "feature_id": 1013, "name": "15.3 m" }
+          ]
+        },
+        {
+          "carrier_id": 102,
+          "carrier_type": "Short Sides (German)",
+          "carrier_features": [
+            { "feature_id": 1021, "name": "12 m" },
+            { "feature_id": 1022, "name": "13.6 m" },
+            { "feature_id": 1023, "name": "15.3 m" }
+          ]
+        },
+        {
+          "carrier_id": 103,
+          "carrier_type": "Curtain",
+          "carrier_features": [
+            { "feature_id": 1031, "name": "13.6 m" },
+            { "feature_id": 1032, "name": "15.3 m" }
+          ]
+        },
+        {
+          "carrier_id": 104,
+          "carrier_type": "Flatbed",
+          "carrier_features": [
+            { "feature_id": 1041, "name": "12 m" },
+            { "feature_id": 1042, "name": "13.6 m" },
+            { "feature_id": 1043, "name": "15.3 m" }
+          ]
+        },
+        {
+          "carrier_id": 105,
+          "carrier_type": "Refrigerator",
+          "carrier_features": [
+            { "feature_id": 1051, "name": "13.6 m" },
+            { "feature_id": 1052, "name": "15.3 m" }
+          ]
+        },
+        {
+          "carrier_id": 106,
+          "carrier_type": "Tipper",
+          "carrier_features": [
+            { "feature_id": 1061, "name": "40 Tons" },
+            { "feature_id": 1062, "name": "80 Tons" }
+          ]
+        },
+        {
+          "carrier_id": 107,
+          "carrier_type": "Lowbed",
+          "carrier_features": [
+            { "feature_id": 1071, "name": "40 Tons" },
+            { "feature_id": 1072, "name": "60 Tons" },
+            { "feature_id": 1073, "name": "80 Tons" }
+          ]
+        },
+        {
+          "carrier_id": 108,
+          "carrier_type": "Container Chassis",
+          "carrier_features": [
+            { "feature_id": 1081, "name": "20 ft" },
+            { "feature_id": 1082, "name": "40 ft" }
+          ]
+        },
+        {
+          "carrier_id": 109,
+          "carrier_type": "Tanker",
+          "carrier_features": [
+            { "feature_id": 1091, "name": "Water" },
+            { "feature_id": 1092, "name": "Fuel" },
+            { "feature_id": 1093, "name": "Gas" },
+            { "feature_id": 1094, "name": "Other" }
+          ]
+        },
+        {
+          "carrier_id": 110,
+          "carrier_type": "Jumbo",
+          "carrier_features": []
+        },
+        {
+          "carrier_id": 111,
+          "carrier_type": "Closed Box",
+          "carrier_features": [
+            { "feature_id": 1111, "name": "13.6 m" },
+            { "feature_id": 1112, "name": "15.3 m" }
+          ]
+        }
+      ]
+    },
+    {
+      "truck_id": 2,
+      "truck_name": "Six (13 Tons)",
+      "truck_data": [
+        { "carrier_id": 201, "carrier_type": "Sides", "carrier_features": [] },
+        { "carrier_id": 202, "carrier_type": "Refrigerator", "carrier_features": [] },
+        { "carrier_id": 203, "carrier_type": "Tipper", "carrier_features": [] },
+        { "carrier_id": 204, "carrier_type": "Closed Box", "carrier_features": [] },
+        { "carrier_id": 205, "carrier_type": "Tanker", "carrier_features": [] },
+        { "carrier_id": 206, "carrier_type": "Lowbed", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 3,
+      "truck_name": "Lorry (5-8 Tons)",
+      "truck_data": [
+        {
+          "carrier_id": 301,
+          "carrier_type": "Refrigerator",
+          "carrier_features": [
+            { "feature_id": 3011, "name": "7.5 Tons" },
+            { "feature_id": 3012, "name": "6.5 Tons" }
+          ]
+        },
+        {
+          "carrier_id": 302,
+          "carrier_type": "Sides",
+          "carrier_features": [
+            { "feature_id": 3021, "name": "7.5 Tons" },
+            { "feature_id": 3022, "name": "6.5 Tons" }
+          ]
+        },
+        { "carrier_id": 303, "carrier_type": "Cage", "carrier_features": [] },
+        {
+          "carrier_id": 304,
+          "carrier_type": "Closed Box",
+          "carrier_features": [
+            { "feature_id": 3041, "name": "7.5 Tons" },
+            { "feature_id": 3042, "name": "6.5 Tons" }
+          ]
+        },
+        {
+          "carrier_id": 305,
+          "carrier_type": "Crane",
+          "carrier_features": [
+            { "feature_id": 3051, "name": "5 Tons" },
+            { "feature_id": 3052, "name": "7 Tons" }
+          ]
+        },
+        { "carrier_id": 306, "carrier_type": "Tipper", "carrier_features": [] },
+        { "carrier_id": 307, "carrier_type": "Tanker", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 4,
+      "truck_name": "Dyna (3.5 Tons)",
+      "truck_data": [
+        { "carrier_id": 401, "carrier_type": "Refrigerator", "carrier_features": [] },
+        { "carrier_id": 402, "carrier_type": "Crane", "carrier_features": [] },
+        { "carrier_id": 403, "carrier_type": "Closed Box", "carrier_features": [] },
+        { "carrier_id": 404, "carrier_type": "Sides", "carrier_features": [] },
+        { "carrier_id": 405, "carrier_type": "Cage", "carrier_features": [] },
+        { "carrier_id": 406, "carrier_type": "Tipper", "carrier_features": [] },
+        { "carrier_id": 407, "carrier_type": "Flatbed", "carrier_features": [] },
+        { "carrier_id": 408, "carrier_type": "Tanker", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 5,
+      "truck_name": "Pickups (1 Ton)",
+      "truck_data": [
+        { "carrier_id": 501, "carrier_type": "Open", "carrier_features": [] },
+        { "carrier_id": 502, "carrier_type": "Closed Box", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 6,
+      "truck_name": "Van - Hiace",
+      "truck_data": [
+        { "carrier_id": 601, "carrier_type": "Refrigerator", "carrier_features": [] },
+        { "carrier_id": 602, "carrier_type": "Closed Box", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 7,
+      "truck_name": "Car Carriers",
+      "truck_data": [
+        { "carrier_id": 701, "carrier_type": "Flatbed Tow Truck", "carrier_features": [] },
+        { "carrier_id": 702, "carrier_type": "Enclosed Car Carriers", "carrier_features": [] },
+        { "carrier_id": 703, "carrier_type": "Open Double Decked", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 8,
+      "truck_name": "Heavy Machinery",
+      "truck_data": [
+        {
+          "carrier_id": 801,
+          "carrier_type": "Earthmoving",
+          "carrier_features": [
+            { "feature_id": 8011, "name": "Bulldozers" },
+            { "feature_id": 8012, "name": "Excavators" },
+            { "feature_id": 8013, "name": "Loaders" },
+            { "feature_id": 8014, "name": "Scrapers" },
+            { "feature_id": 8015, "name": "Bobcat" }
+          ]
+        },
+        {
+          "carrier_id": 802,
+          "carrier_type": "Hauling & Material Handling",
+          "carrier_features": [
+            { "feature_id": 8021, "name": "Crashers" },
+            { "feature_id": 8022, "name": "Forklifts" }
+          ]
+        },
+        {
+          "carrier_id": 803,
+          "carrier_type": "Road Construction",
+          "carrier_features": [
+            { "feature_id": 8031, "name": "Graders" },
+            { "feature_id": 8032, "name": "Rollers" },
+            { "feature_id": 8033, "name": "Pavers" },
+            { "feature_id": 8034, "name": "Millers" }
+          ]
+        },
+        {
+          "carrier_id": 804,
+          "carrier_type": "Lifting & Foundation",
+          "carrier_features": [
+            { "feature_id": 8041, "name": "Cranes" },
+            { "feature_id": 8042, "name": "Drilling" },
+            { "feature_id": 8043, "name": "Piling Rigs" }
+          ]
+        },
+        {
+          "carrier_id": 805,
+          "carrier_type": "Concrete & Mixing",
+          "carrier_features": [
+            { "feature_id": 8051, "name": "Concrete Pump Trucks" },
+            { "feature_id": 8052, "name": "Concrete Mixing Truck" },
+            { "feature_id": 8053, "name": "Cement Mixer" },
+            { "feature_id": 8054, "name": "Concrete Vibrator" }
+          ]
+        }
+      ]
+    }
+  ],
+  "ar": [
+    {
+      "truck_id": 1,
+      "truck_name": "مقطورة (+20 طن)",
+      "truck_data": [
+        {
+          "carrier_id": 101,
+          "carrier_type": "جوانب متررتفعة",
+          "carrier_features": [
+            { "feature_id": 1011, "name": "12 متر" },
+            { "feature_id": 1012, "name": "13.6 متر" },
+            { "feature_id": 1013, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 102,
+          "carrier_type": "جوانب قصيرة (ألماني)",
+          "carrier_features": [
+            { "feature_id": 1021, "name": "12 متر" },
+            { "feature_id": 1022, "name": "13.6 متر" },
+            { "feature_id": 1023, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 103,
+          "carrier_type": "ستارة",
+          "carrier_features": [
+            { "feature_id": 1031, "name": "13.6 متر" },
+            { "feature_id": 1032, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 104,
+          "carrier_type": "مسطحة",
+          "carrier_features": [
+            { "feature_id": 1041, "name": "12 متر" },
+            { "feature_id": 1042, "name": "13.6 متر" },
+            { "feature_id": 1043, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 105,
+          "carrier_type": "مبردة",
+          "carrier_features": [
+            { "feature_id": 1051, "name": "13.6 متر" },
+            { "feature_id": 1052, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 106,
+          "carrier_type": "قلاب",
+          "carrier_features": [
+            { "feature_id": 1061, "name": "40 طن" },
+            { "feature_id": 1062, "name": "80 طن" }
+          ]
+        },
+        {
+          "carrier_id": 107,
+          "carrier_type": "لودر مترنخفض",
+          "carrier_features": [
+            { "feature_id": 1071, "name": "40 طن" },
+            { "feature_id": 1072, "name": "60 طن" },
+            { "feature_id": 1073, "name": "80 طن" }
+          ]
+        },
+        {
+          "carrier_id": 108,
+          "carrier_type": "شاسيه حاويات",
+          "carrier_features": [
+            { "feature_id": 1081, "name": "20 قدم" },
+            { "feature_id": 1082, "name": "40 قدم" }
+          ]
+        },
+        {
+          "carrier_id": 109,
+          "carrier_type": "صهريج",
+          "carrier_features": [
+            { "feature_id": 1091, "name": "مياه" },
+            { "feature_id": 1092, "name": "وقود" },
+            { "feature_id": 1093, "name": "غاز" },
+            { "feature_id": 1094, "name": "أخرى" }
+          ]
+        },
+        { "carrier_id": 110, "carrier_type": "جامبو", "carrier_features": [] },
+        {
+          "carrier_id": 111,
+          "carrier_type": "صندوق مترغلق",
+          "carrier_features": [
+            { "feature_id": 1111, "name": "13.6 متر" },
+            { "feature_id": 1112, "name": "15.3 متر" }
+          ]
+        }
+      ]
+    },
+    {
+      "truck_id": 2,
+      "truck_name": "سكس (13 طن)",
+      "truck_data": [
+        { "carrier_id": 201, "carrier_type": "جوانب", "carrier_features": [] },
+        { "carrier_id": 202, "carrier_type": "مبردة", "carrier_features": [] },
+        { "carrier_id": 203, "carrier_type": "قلاب", "carrier_features": [] },
+        { "carrier_id": 204, "carrier_type": "صندوق مترغلق", "carrier_features": [] },
+        { "carrier_id": 205, "carrier_type": "صهريج", "carrier_features": [] },
+        { "carrier_id": 206, "carrier_type": "لودر مترنخفض", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 3,
+      "truck_name": "لورى (5–8 طن)",
+      "truck_data": [
+        {
+          "carrier_id": 301,
+          "carrier_type": "مبردة",
+          "carrier_features": [
+            { "feature_id": 3011, "name": "7.5 طن" },
+            { "feature_id": 3012, "name": "6.5 طن" }
+          ]
+        },
+        {
+          "carrier_id": 302,
+          "carrier_type": "جوانب",
+          "carrier_features": [
+            { "feature_id": 3021, "name": "7.5 طن" },
+            { "feature_id": 3022, "name": "6.5 طن" }
+          ]
+        },
+        { "carrier_id": 303, "carrier_type": "قفص", "carrier_features": [] },
+        {
+          "carrier_id": 304,
+          "carrier_type": "صندوق مترغلق",
+          "carrier_features": [
+            { "feature_id": 3041, "name": "7.5 طن" },
+            { "feature_id": 3042, "name": "6.5 طن" }
+          ]
+        },
+        {
+          "carrier_id": 305,
+          "carrier_type": "رافعة",
+          "carrier_features": [
+            { "feature_id": 3051, "name": "5 طن" },
+            { "feature_id": 3052, "name": "7 طن" }
+          ]
+        },
+        { "carrier_id": 306, "carrier_type": "قلاب", "carrier_features": [] },
+        { "carrier_id": 307, "carrier_type": "صهريج", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 4,
+      "truck_name": "دينا (3.5 طن)",
+      "truck_data": [
+        { "carrier_id": 401, "carrier_type": "مبردة", "carrier_features": [] },
+        { "carrier_id": 402, "carrier_type": "رافعة", "carrier_features": [] },
+        { "carrier_id": 403, "carrier_type": "صندوق مترغلق", "carrier_features": [] },
+        { "carrier_id": 404, "carrier_type": "جوانب", "carrier_features": [] },
+        { "carrier_id": 405, "carrier_type": "قفص", "carrier_features": [] },
+        { "carrier_id": 406, "carrier_type": "قلاب", "carrier_features": [] },
+        { "carrier_id": 407, "carrier_type": "مسطحة", "carrier_features": [] },
+        { "carrier_id": 408, "carrier_type": "صهريج", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 5,
+      "truck_name": "بيك أب (1 طن)",
+      "truck_data": [
+        { "carrier_id": 501, "carrier_type": "مفتوح", "carrier_features": [] },
+        { "carrier_id": 502, "carrier_type": "صندوق مترغلق", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 6,
+      "truck_name": "فان - هايس",
+      "truck_data": [
+        { "carrier_id": 601, "carrier_type": "مبردة", "carrier_features": [] },
+        { "carrier_id": 602, "carrier_type": "صندوق مترغلق", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 7,
+      "truck_name": "ناقلات سيارات",
+      "truck_data": [
+        { "carrier_id": 701, "carrier_type": "سطحة سيارات", "carrier_features": [] },
+        { "carrier_id": 702, "carrier_type": "ناقل سيارات مترغلق", "carrier_features": [] },
+        { "carrier_id": 703, "carrier_type": "مفتوح مترزدوج", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 8,
+      "truck_name": "معدات ثقيلة",
+      "truck_data": [
+        {
+          "carrier_id": 801,
+          "carrier_type": "معدات تحريك التربة",
+          "carrier_features": [
+            { "feature_id": 8011, "name": "جرافات" },
+            { "feature_id": 8012, "name": "حفارات" },
+            { "feature_id": 8013, "name": "لودرات" },
+            { "feature_id": 8014, "name": "كاشطات" },
+            { "feature_id": 8015, "name": "بوبكات" }
+          ]
+        },
+        {
+          "carrier_id": 802,
+          "carrier_type": "مناولة ونقل",
+          "carrier_features": [
+            { "feature_id": 8021, "name": "كسارات" },
+            { "feature_id": 8022, "name": "رافعات شوكية" }
+          ]
+        },
+        {
+          "carrier_id": 803,
+          "carrier_type": "إنشاء الطرق",
+          "carrier_features": [
+            { "feature_id": 8031, "name": "جريدر" },
+            { "feature_id": 8032, "name": "مداحل" },
+            { "feature_id": 8033, "name": "فرادات" },
+            { "feature_id": 8034, "name": "فرايز" }
+          ]
+        },
+        {
+          "carrier_id": 804,
+          "carrier_type": "الرفع والأساسات",
+          "carrier_features": [
+            { "feature_id": 8041, "name": "أوناش" },
+            { "feature_id": 8042, "name": "حفر" },
+            { "feature_id": 8043, "name": "دق خوازيق" }
+          ]
+        },
+        {
+          "carrier_id": 805,
+          "carrier_type": "الخرسانة والخلط",
+          "carrier_features": [
+            { "feature_id": 8051, "name": "مضخات خرسانة" },
+            { "feature_id": 8052, "name": "شاحنات خلط خرسانة" },
+            { "feature_id": 8053, "name": "خلاطات أسمنت" },
+            { "feature_id": 8054, "name": "هزازات خرسانة" }
+          ]
+        }
+      ]
+    }
+  ],
+  "ur": [
+    {
+      "truck_id": 1,
+      "truck_name": "ٹریلر (+20 ٹن)",
+      "truck_data": [
+        {
+          "carrier_id": 101,
+          "carrier_type": "اونچی سائیڈز",
+          "carrier_features": [
+            { "feature_id": 1011, "name": "12 متر" },
+            { "feature_id": 1012, "name": "13.6 متر" },
+            { "feature_id": 1013, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 102,
+          "carrier_type": "چھوٹی سائیڈز (جرمن)",
+          "carrier_features": [
+            { "feature_id": 1021, "name": "12 متر" },
+            { "feature_id": 1022, "name": "13.6 متر" },
+            { "feature_id": 1023, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 103,
+          "carrier_type": "پردہ",
+          "carrier_features": [
+            { "feature_id": 1031, "name": "13.6 متر" },
+            { "feature_id": 1032, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 104,
+          "carrier_type": "فلیٹ بیڈ",
+          "carrier_features": [
+            { "feature_id": 1041, "name": "12 متر" },
+            { "feature_id": 1042, "name": "13.6 متر" },
+            { "feature_id": 1043, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 105,
+          "carrier_type": "ریفریجریٹر",
+          "carrier_features": [
+            { "feature_id": 1051, "name": "13.6 متر" },
+            { "feature_id": 1052, "name": "15.3 متر" }
+          ]
+        },
+        {
+          "carrier_id": 106,
+          "carrier_type": "ٹپر",
+          "carrier_features": [
+            { "feature_id": 1061, "name": "40 ٹن" },
+            { "feature_id": 1062, "name": "80 ٹن" }
+          ]
+        },
+        {
+          "carrier_id": 107,
+          "carrier_type": "لو بیڈ",
+          "carrier_features": [
+            { "feature_id": 1071, "name": "40 ٹن" },
+            { "feature_id": 1072, "name": "60 ٹن" },
+            { "feature_id": 1073, "name": "80 ٹن" }
+          ]
+        },
+        {
+          "carrier_id": 108,
+          "carrier_type": "کنٹینر چیسیس",
+          "carrier_features": [
+            { "feature_id": 1081, "name": "20 فٹ" },
+            { "feature_id": 1082, "name": "40 فٹ" }
+          ]
+        },
+        {
+          "carrier_id": 109,
+          "carrier_type": "ٹینکر",
+          "carrier_features": [
+            { "feature_id": 1091, "name": "پانی" },
+            { "feature_id": 1092, "name": "ایندھن" },
+            { "feature_id": 1093, "name": "گیس" },
+            { "feature_id": 1094, "name": "دیگر" }
+          ]
+        },
+        { "carrier_id": 110, "carrier_type": "جمبو", "carrier_features": [] },
+        {
+          "carrier_id": 111,
+          "carrier_type": "بند باکس",
+          "carrier_features": [
+            { "feature_id": 1111, "name": "13.6 متر" },
+            { "feature_id": 1112, "name": "15.3 متر" }
+          ]
+        }
+      ]
+    },
+    {
+      "truck_id": 2,
+      "truck_name": "سکس (13 ٹن)",
+      "truck_data": [
+        { "carrier_id": 201, "carrier_type": "سائیڈز", "carrier_features": [] },
+        { "carrier_id": 202, "carrier_type": "ریفریجریٹر", "carrier_features": [] },
+        { "carrier_id": 203, "carrier_type": "ٹپر", "carrier_features": [] },
+        { "carrier_id": 204, "carrier_type": "بند باکس", "carrier_features": [] },
+        { "carrier_id": 205, "carrier_type": "ٹینکر", "carrier_features": [] },
+        { "carrier_id": 206, "carrier_type": "لو بیڈ", "carrier_features": [] }
+      ]
+    },
+    {
+      "truck_id": 3,
+      "truck_name": "لاری (5–8 ٹن)",
+      "truck_data": [
+        {
+          "carrier_id": 301,
+          "carrier_type": "ریفریجریٹر",
+          "carrier_features": [
+            { "feature_id": 3011, "name": "7.5 ٹن" },
+            { "feature_id": 3012, "name": "6.5 ٹن" }
+          ]
+        },
+        {
+          "carrier_id": 302,
+          "carrier_type": "سائیڈز",
+          "carrier_features": [
+            { "feature_id": 3021, "name": "7.5 ٹن" },
+            { "feature_id": 3022, "name": "6.5 ٹن" }
+          ]
+        },
+        { "carrier_id": 303, "carrier_type": "پنجرہ", "carrier_features": [] },
+        {
+          "carrier_id": 304,
+          "carrier_type": "بند باکس",
+          "carrier_features": [
+            { "feature_id": 3041, "name": "7.5 ٹن" },
+            { "feature_id": 3042, "name": "6.5 ٹن" }
+          ]
+        },
+        {
+          "carrier_id": 305,
+          "carrier_type": "کرین",
+          "carrier_features": [
+            { "feature_id": 3051, "name": "5 ٹن" },
+            { "feature_id": 3052, "name": "7 ٹن" }
+          ]
+        },
+        { "carrier_id": 306, "carrier_type": "ٹپر", "carrier_features": [] },
+        { "carrier_id": 307, "carrier_type": "ٹینکر", "carrier_features": [] }
+      ]
+    }
+  ]
+}
