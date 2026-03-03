@@ -1,9 +1,10 @@
+import 'package:naqliatdrivsas/core/helper/extension.dart';
+
 import '../widget/lang_option.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import '../widget/onboarding_hey.dart';
 import '../../../../core/helper/constant.dart';
-import 'package:naqliatsa/core/helper/extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../../../core/common/widget/bottom_nav_wrapper.dart';
 

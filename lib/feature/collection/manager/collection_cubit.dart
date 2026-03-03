@@ -16,6 +16,9 @@ class CollectionCubit extends Cubit<CollectionState> {
     truckId: -1,
     carrierId: -1,
     featureId: null,
+    carrierType: '',
+    featureName: null,
+    truckName: '',
   );
   List<CarrierModel> carriers = [];
   List<CarrierFeatureModel> features = [];
@@ -46,18 +49,31 @@ class CollectionCubit extends Cubit<CollectionState> {
 
   void selectTruck(TruckModel truck) {
     carriers = truck.carriers;
-    userSelection.truckId = truck.id;
+    userSelection = UserTruckModel(
+      truckId: truck.id,
+      truckName: truck.truckName,
+      carrierId: -1,
+      carrierType: '',
+      featureId: null,
+      featureName: null,
+    );
     emit(TruckSelected());
   }
 
   void selectCarrier(CarrierModel carrier) {
     features = carrier.carrierFeatures;
-    userSelection.carrierId = carrier.id;
+    userSelection
+      ..carrierId = carrier.id
+      ..carrierType = carrier.carrierType
+      ..featureId = null
+      ..featureName = null;
     emit(CarrierSelected());
   }
 
   void selectFeature(CarrierFeatureModel feature) {
-    userSelection.featureId = feature.id;
+    userSelection
+      ..featureId = feature.id
+      ..featureName = feature.name;
     emit(FeatureSelected());
   }
 
@@ -80,13 +96,27 @@ class CollectionCubit extends Cubit<CollectionState> {
 
   void resetStep(int stepIndex) {
     if (stepIndex == 0) {
-      userSelection.truckId = -1;
+      userSelection = UserTruckModel(
+        truckId: -1,
+        truckName: '',
+        carrierId: -1,
+        carrierType: '',
+        featureId: null,
+        featureName: null,
+      );
       carriers = [];
+      features = [];
     } else if (stepIndex == 1) {
-      userSelection.carrierId = -1;
+      userSelection
+        ..carrierId = -1
+        ..carrierType = ''
+        ..featureId = null
+        ..featureName = null;
       features = [];
     } else if (stepIndex == 2) {
-      userSelection.featureId = null;
+      userSelection
+        ..featureId = null
+        ..featureName = null;
     }
   }
 

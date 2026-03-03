@@ -1,3 +1,5 @@
+// lib/feature/collection/ui/view/collection_view.dart
+
 import '../../../../core/helper/constant.dart';
 import '../../../../core/helper/extension.dart';
 import '../widget/carrier_feature_section.dart';
@@ -16,16 +18,15 @@ class CollectionView extends StatefulWidget {
 
 class _CollectionViewState extends State<CollectionView> {
   int _index = 0;
+  bool _initialized = false;
 
   @override
-  void initState() {
-    super.initState();
-    context.read<CollectionCubit>().getCollectionData(context);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_initialized) {
+      _initialized = true;
+      context.read<CollectionCubit>().getCollectionData(context);
+    }
   }
 
   @override
@@ -50,9 +51,9 @@ class _CollectionViewState extends State<CollectionView> {
               onStepContinue: () async => await _onStepContinue(context),
               onStepCancel: _index > 0
                   ? () {
-                      context.read<CollectionCubit>().resetStep(_index);
-                      setState(() => _index--);
-                    }
+                context.read<CollectionCubit>().resetStep(_index);
+                setState(() => _index--);
+              }
                   : null,
               steps: [
                 Step(
@@ -94,7 +95,7 @@ class _CollectionViewState extends State<CollectionView> {
         await cubit.updateUserTruck();
       }
     } else {
-      context.showMsg("Please select an option before contine");
+      context.showMsg("Please select an option before continuing");
     }
   }
 }

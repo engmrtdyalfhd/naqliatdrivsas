@@ -1,11 +1,10 @@
-import 'package:naqliatsa/feature/location/data/model/admodel.dart';
-
+import 'package:naqliatdrivsas/feature/location/data/model/admodel.dart';
 import 'location_repo.dart';
-// import '../model/ad_model.dart';
 import '../model/city_model.dart';
 import '../source/location_remote_source.dart';
 
 class LocationRepoImpl implements LocationRepo {
+  @override
   final LocationRemoteSource remoteSource;
 
   LocationRepoImpl(this.remoteSource);
@@ -17,9 +16,12 @@ class LocationRepoImpl implements LocationRepo {
 
   @override
   Future<List<AdModel>> getAdsByFromTo({
-    required String from,
-    required String to,
+    required String originCity,
+    required String destinationCity,
   }) async {
-    return await remoteSource.getAdsByFromTo(from: from, to: to);
+    return await remoteSource.getShipmentsByRoute(
+      originCity: originCity,
+      destinationCity: destinationCity,
+    );
   }
 }

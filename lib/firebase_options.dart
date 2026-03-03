@@ -58,9 +58,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB9sS_6xdLpVuzASaK6_WJNaXNvFHbjLEY',
-    appId: '1:524949524658:android:25fcd8c2f62234301b39ab',
+    appId: '1:524949524658:android:ef803061a3c8d9a51b39ab',
     messagingSenderId: '524949524658',
     projectId: 'naqliatsa',
+    databaseURL: 'https://naqliatsa-default-rtdb.firebaseio.com',
     storageBucket: 'naqliatsa.firebasestorage.app',
   );
 
@@ -69,6 +70,7 @@ class DefaultFirebaseOptions {
     appId: '1:524949524658:ios:2ff657d4659485431b39ab',
     messagingSenderId: '524949524658',
     projectId: 'naqliatsa',
+    databaseURL: 'https://naqliatsa-default-rtdb.firebaseio.com',
     storageBucket: 'naqliatsa.firebasestorage.app',
     iosBundleId: 'com.example.naqliatsa',
   );

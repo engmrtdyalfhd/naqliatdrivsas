@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:naqliatsa/feature/auth/ui/view/verify_phone_view.dart';
+import 'package:naqliatdrivsas/feature/auth/ui/view/verify_phone_view.dart' show VerifyPhoneView;
 import '../../../../core/common/widget/input.dart';
 import '../../../../core/common/widget/loading_progress.dart';
 import '../../../../core/helper/constant.dart';

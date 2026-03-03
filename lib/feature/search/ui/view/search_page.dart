@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:naqliatsa/feature/search/data/cubits/search_cubit.dart';
-import 'package:naqliatsa/feature/search/data/model/shipment_model.dart';
+import 'package:naqliatdrivsas/feature/search/data/cubits/search_cubit.dart';
+import 'package:naqliatdrivsas/feature/search/data/model/shipment_model.dart';
+
 // import '../cubit/search/search_cubit.dart';
 // import '../models/shipment.dart';
 

@@ -1,6 +1,6 @@
 // data/repositories/shipment_repository.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:naqliatsa/feature/search/data/model/shipment_model.dart';
+import 'package:naqliatdrivsas/feature/search/data/model/shipment_model.dart';
 // import '../../models/shipment.dart';
 
 abstract class ShipmentRepository {

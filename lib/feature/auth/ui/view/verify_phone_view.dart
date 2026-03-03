@@ -1,10 +1,13 @@
+// lib/feature/auth/ui/view/verify_phone_view.dart
+
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:naqliatsa/feature/home/ui/view/home_view.dart';
 import '../../../../core/common/widget/bottom_nav_wrapper.dart';
 import '../../../../core/common/widget/loading_progress.dart';
+import '../../../../core/helper/constant.dart';
+import '../../../../core/helper/extension.dart';
 import '../../manager/auth_cubit.dart';
 import '../widget/otp_input.dart';
 
@@ -18,11 +21,14 @@ class VerifyPhoneView extends StatefulWidget {
 class _VerifyPhoneViewState extends State<VerifyPhoneView> {
   Timer? _timer;
   bool _canResend = false;
-  // context.read<>()
 
   void startTimer() {
     _canResend = false;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
       if (context.read<AuthCubit>().counter == 0) {
         setState(() {
           _canResend = true;
@@ -51,12 +57,12 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Verify")),
+      appBar: AppBar(title: const Text("Verify")),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisSize: .min,
-          crossAxisAlignment: .stretch,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
               "Enter OTP verification code",
@@ -69,12 +75,10 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
             const SizedBox(height: 32),
             const OtpInput(),
             const SizedBox(height: 16),
-
             Row(
-              spacing: 1,
-              mainAxisAlignment: .center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Flexible(
+                const Flexible(
                   flex: 3,
                   child: Text(
                     "Didn't receive the code?",
@@ -84,17 +88,18 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
                 const Spacer(),
                 Text(
                   formatTime(context.read<AuthCubit>().counter),
-                  textAlign: .center,
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 13, fontWeight: FontWeight.bold),
                 ),
                 TextButton(
                   onPressed: _canResend
                       ? () async {
-                          await context.read<AuthCubit>().sendOTP();
-                          startTimer();
-                        }
+                    await context.read<AuthCubit>().sendOTP();
+                    startTimer();
+                  }
                       : null,
-                  child: Text("Resend"),
+                  child: const Text("Resend"),
                 ),
               ],
             ),
@@ -103,20 +108,19 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
       ),
       bottomNavigationBar: BottomNavWrapper(
         child: FilledButton(
-          onPressed: () async {
-            context.read<AuthCubit>().verifyPhone();
-          },
+          onPressed: () => context.read<AuthCubit>().verifyPhone(),
           child: BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state is AuthSuccess) {
-                // الانتقال للشاشة الرئيسية
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => const HomeView()),
+                // Let AuthGate's StreamBuilder decide where to go
+                // (HomeView if has truck, CollectionView if not)
+                context.pushNamedAndRemoveUntil(
+                  RoutePath.authGate,
+                      (_) => false,
                 );
               } else if (state is AuthFailure) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.error ?? "Verification failed")),
+                  SnackBar(content: Text(state.error)),
                 );
               }
             },
@@ -125,24 +129,14 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
               return Text("continue".tr());
             },
           ),
-
-          //  BlocConsumer<AuthCubit, AuthState>(
-          //   listener: (_, state) {},
-          //   builder: (_, state) {
-          //     if (state is AuthLoading) return const LoadingProgress();
-          //     return Text("continue".tr());
-          //   },
-          // ),
         ),
       ),
     );
   }
 
   String formatTime(int seconds) {
-    int minutes = seconds ~/ 60;
-    int remainingSeconds = seconds % 60;
-
-    // 00:25
-    return "${minutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}";
+    final m = (seconds ~/ 60).toString().padLeft(2, '0');
+    final s = (seconds % 60).toString().padLeft(2, '0');
+    return "$m:$s";
   }
 }

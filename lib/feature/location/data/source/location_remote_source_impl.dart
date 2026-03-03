@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:naqliatsa/feature/location/data/model/admodel.dart';
-import 'package:naqliatsa/feature/location/data/source/location_remote_source.dart';
-// import '../model/ad_model.dart';
+import 'package:naqliatdrivsas/feature/location/data/model/admodel.dart';
+import 'package:naqliatdrivsas/feature/location/data/source/location_remote_source.dart';
 import '../model/city_model.dart';
-// import 'location_remote_source.dart';
 
 class LocationRemoteSourceImpl implements LocationRemoteSource {
   final FirebaseFirestore firestore;
@@ -12,22 +10,33 @@ class LocationRemoteSourceImpl implements LocationRemoteSource {
 
   @override
   Future<List<CityModel>> getCities() async {
-    final snapshot = await firestore.collection("cities").get();
+    final snapshot = await firestore.collection("shipments").get();
 
-    return snapshot.docs.map((doc) {
-      return CityModel.fromFirestore(doc.data(), doc.id);
-    }).toList();
+    // Extract all unique city names from originCity and destinationCity
+    final Set<String> cityNames = {};
+    for (final doc in snapshot.docs) {
+      final data = doc.data();
+      final origin = data['originCity'] as String?;
+      final destination = data['destinationCity'] as String?;
+      if (origin != null && origin.isNotEmpty) cityNames.add(origin);
+      if (destination != null && destination.isNotEmpty) cityNames.add(destination);
+    }
+
+    return cityNames
+        .map((name) => CityModel(id: name, name: name))
+        .toList()
+      ..sort((a, b) => a.name.compareTo(b.name));
   }
 
   @override
-  Future<List<AdModel>> getAdsByFromTo({
-    required String from,
-    required String to,
+  Future<List<AdModel>> getShipmentsByRoute({
+    required String originCity,
+    required String destinationCity,
   }) async {
     final snapshot = await firestore
-        .collection("ads")
-        .where("from", isEqualTo: from)
-        .where("to", isEqualTo: to)
+        .collection("shipments")
+        .where("originCity", isEqualTo: originCity)
+        .where("destinationCity", isEqualTo: destinationCity)
         .get();
 
     return snapshot.docs.map((doc) {

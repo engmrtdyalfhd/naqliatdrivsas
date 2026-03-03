@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:naqliatsa/core/helper/extension.dart';
+import 'package:naqliatdrivsas/core/helper/extension.dart';
 
 import '../../../core/helper/constant.dart';
 import '../../../core/helper/utils.dart';

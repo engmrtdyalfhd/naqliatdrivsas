@@ -1,7 +1,8 @@
 // cubit/search/search_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:naqliatsa/feature/search/data/model/shipment_model.dart';
-import 'package:naqliatsa/feature/search/data/repo/shipment_repository.dart';
+import 'package:naqliatdrivsas/feature/search/data/model/shipment_model.dart';
+import 'package:naqliatdrivsas/feature/search/data/repo/shipment_repository.dart';
+
 
 part 'search_state.dart';
 
