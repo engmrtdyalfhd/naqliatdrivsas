@@ -1,6 +1,3 @@
-// lib/core/service/service_locator.dart
-// Merged both functions into one so nothing is missed.
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import '../../feature/collection/data/repo/collection_repo.dart';

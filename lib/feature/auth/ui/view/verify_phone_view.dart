@@ -1,5 +1,3 @@
-// lib/feature/auth/ui/view/verify_phone_view.dart
-
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -110,10 +108,11 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
         child: FilledButton(
           onPressed: () => context.read<AuthCubit>().verifyPhone(),
           child: BlocConsumer<AuthCubit, AuthState>(
+            // Only listen for terminal states — ignore CodeSentState (resend)
+            listenWhen: (_, state) =>
+            state is AuthSuccess || state is AuthFailure,
             listener: (context, state) {
               if (state is AuthSuccess) {
-                // Let AuthGate's StreamBuilder decide where to go
-                // (HomeView if has truck, CollectionView if not)
                 context.pushNamedAndRemoveUntil(
                   RoutePath.authGate,
                       (_) => false,
@@ -124,6 +123,12 @@ class _VerifyPhoneViewState extends State<VerifyPhoneView> {
                 );
               }
             },
+            // Only rebuild the button for loading/non-loading states
+            buildWhen: (_, state) =>
+            state is AuthLoading ||
+                state is AuthInitial ||
+                state is AuthFailure ||
+                state is AuthSuccess,
             builder: (_, state) {
               if (state is AuthLoading) return const LoadingProgress();
               return Text("continue".tr());

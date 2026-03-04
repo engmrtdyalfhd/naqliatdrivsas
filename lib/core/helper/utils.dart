@@ -1,4 +1,3 @@
-
 import 'package:naqliatdrivsas/firebase_options.dart';
 
 import 'extension.dart';
@@ -30,25 +29,6 @@ Future<void> initMain() async {
       statusBarIconBrightness: Brightness.light,
     ),
   );
-
-  // ! ______ Save dashboard data to firestore
-  // Future<Map<String, dynamic>> loadDashboardJson() async {
-  //   final String jsonString = await rootBundle.loadString(
-  //     'assets/langs/data.json',
-  //   );
-
-  //   return json.decode(jsonString) as Map<String, dynamic>;
-  // }
-
-  // final rawData = await loadDashboardJson();
-  // final model = CollectionModel.fromJson(rawData);
-
-  // await FirebaseFirestore.instance
-  //     .collection(FirebaseStr.dashboardCollection)
-  //     .doc(FirebaseStr.collectDataDoc)
-  //     .set(model.toJson());
-  // ! ______ Save dashboard data to firestore
-
   FlutterNativeSplash.remove();
 }
 

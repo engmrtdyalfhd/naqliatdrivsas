@@ -1,12 +1,9 @@
-// lib/feature/auth/manager/auth_cubit.dart
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../core/helper/constant.dart';
 import '../data/login_model.dart';
-import '../data/user_model.dart';
 
 part 'auth_state.dart';
 
@@ -22,7 +19,6 @@ class AuthCubit extends Cubit<AuthState> {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Safe emit — ignores calls after cubit is closed
   void _emit(AuthState state) {
     if (!isClosed) emit(state);
   }
@@ -51,7 +47,9 @@ class AuthCubit extends Cubit<AuthState> {
             _emit(AuthFailure("Something went wrong."));
           }
         },
-        codeAutoRetrievalTimeout: (String verificationId) {},
+        codeAutoRetrievalTimeout: (String verificationId) {
+          _verifId = verificationId;
+        },
       );
     } catch (e) {
       _emit(AuthFailure("Unexpected error. Try again later."));
@@ -59,14 +57,38 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> _verificationCompleted(PhoneAuthCredential credential) async {
-    await _auth.signInWithCredential(credential);
-    await saveUser();
-    _isUserHasCollection = await _didUserCollectData;
-    _emit(AuthSuccess(_isUserHasCollection));
+    try {
+      await _auth.signInWithCredential(credential);
+      await saveUser();
+      _isUserHasCollection = await _didUserCollectData;
+      _emit(AuthSuccess(_isUserHasCollection));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-verification-code') {
+        _emit(AuthFailure("The provided code is not valid."));
+      } else if (e.code == 'session-expired') {
+        _emit(AuthFailure("The provided code is expired."));
+      } else if (e.code == 'invalid-verification-id') {
+        _emit(AuthFailure("The provided code is invalid."));
+      } else {
+        _emit(AuthFailure("Authentication failed. Please try again."));
+      }
+    } on FirebaseException {
+      _emit(AuthFailure("Could not complete sign in. Try again later."));
+    } catch (_) {
+      _emit(AuthFailure("Unexpected error. Try again later."));
+    }
   }
 
   Future<void> verifyPhone() async {
-    if (state is AuthLoading || smsCode.isEmpty) return;
+    if (state is AuthLoading) return;
+    if (smsCode.isEmpty) {
+      _emit(AuthFailure("Please enter the OTP code."));
+      return;
+    }
+    if (_verifId.isEmpty) {
+      _emit(AuthFailure("Verification session expired. Please resend OTP."));
+      return;
+    }
     _emit(AuthLoading());
     try {
       final PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -74,20 +96,8 @@ class AuthCubit extends Cubit<AuthState> {
         verificationId: _verifId,
       );
       await _verificationCompleted(credential);
-    } catch (e) {
-      if (e is FirebaseAuthException) {
-        if (e.code == 'invalid-verification-code') {
-          _emit(AuthFailure("The provided code is not valid."));
-        } else if (e.code == 'session-expired') {
-          _emit(AuthFailure("The provided code is expired."));
-        } else if (e.code == 'invalid-verification-id') {
-          _emit(AuthFailure("The provided code is invalid."));
-        } else {
-          _emit(AuthFailure("Something went wrong. Status code $e"));
-        }
-      } else {
-        _emit(AuthFailure("Unexpected error. Try again later."));
-      }
+    } catch (_) {
+      _emit(AuthFailure("Unexpected error. Try again later."));
     }
   }
 
