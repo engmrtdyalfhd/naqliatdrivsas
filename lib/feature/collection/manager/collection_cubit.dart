@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../data/model/carrier_model.dart';
 import '../data/model/truck_model.dart';
-import '../../auth/data/user_truck_model.dart';
+import '../../auth/data/model/user_truck_model.dart';
 import '../data/repo/collection_repo.dart';
 import '../data/model/collection_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

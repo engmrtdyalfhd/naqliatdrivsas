@@ -1,15 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:naqliatdrivsas/feature/auth/presentation/cubit/auth_cubit.dart';
+import 'package:naqliatdrivsas/feature/auth/presentation/widget/counterCodePicker.dart';
+import 'package:naqliatdrivsas/feature/auth/presentation/view/verify_phone_view.dart'
+    show VerifyPhoneView;
+
 import '../../../../core/common/widget/bottom_nav_wrapper.dart';
 import '../../../../core/common/widget/input.dart';
 import '../../../../core/common/widget/loading_progress.dart';
 import '../../../../core/helper/constant.dart';
 import '../../../../core/helper/extension.dart';
-import '../../manager/auth_cubit.dart';
-import '../widget/country_code_picker.dart';
-import 'verify_phone_view.dart';
+
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -26,8 +29,8 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   void initState() {
-    _controller = TextEditingController();
     super.initState();
+    _controller = TextEditingController();
   }
 
   @override
@@ -39,10 +42,9 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, AuthState>(
-      // Only react to CodeSentState and AuthFailure — AuthSuccess belongs to VerifyPhoneView
-      listenWhen: (_, state) => state is CodeSentState || state is AuthFailure,
+      listenWhen: (_, state) => state is OtpSentState || state is AuthFailure,
       listener: (context, state) {
-        if (state is CodeSentState) {
+        if (state is OtpSentState) {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (_) => BlocProvider.value(
@@ -52,25 +54,27 @@ class _LoginViewState extends State<LoginView> {
             ),
           );
         } else if (state is AuthFailure) {
-          context.simpleDialog(msg: state.error, lottie: ImgPath.error);
+          context.simpleDialog(msg: state.message, lottie: ImgPath.error);
         }
       },
       child: Scaffold(
-        appBar: AppBar(title: Text("login".tr())),
+        appBar: AppBar(title: Text('login'.tr())),
         body: SafeArea(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "login_hint1".tr(),
+                  'login_hint1'.tr(),
                   style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 3),
-                Text("login_hint2".tr()),
+                Text('login_hint2'.tr()),
                 const SizedBox(height: 32),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,25 +83,29 @@ class _LoginViewState extends State<LoginView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "country".tr(),
+                          'country'.tr(),
                           style: TextStyle(color: Colors.grey.shade600),
                         ),
-                        CountryCodePicker(
-                          selectedCode: _countryCode,
-                          onTap:
-                          context.read<AuthCubit>().state is AuthLoading
-                              ? null
-                              : () async {
-                            final code =
-                            await showModalBottomSheet<String>(
-                              context: context,
-                              isScrollControlled: true,
-                              builder: (_) =>
-                              const CountryCodeBottomSheet(),
+                        BlocBuilder<AuthCubit, AuthState>(
+                          buildWhen: (_, state) => state is AuthLoading || state is AuthInitial,
+                          builder: (context, state) {
+                            return CountryCodePicker(
+                              selectedCode: _countryCode,
+                              onTap: state is AuthLoading
+                                  ? null
+                                  : () async {
+                                final code =
+                                await showModalBottomSheet<String>(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  builder: (_) =>
+                                  const CountryCodeBottomSheet(),
+                                );
+                                if (code != null) {
+                                  setState(() => _countryCode = code);
+                                }
+                              },
                             );
-                            if (code != null) {
-                              setState(() => _countryCode = code);
-                            }
                           },
                         ),
                       ],
@@ -108,7 +116,7 @@ class _LoginViewState extends State<LoginView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "phone".tr(),
+                            'phone'.tr(),
                             style: TextStyle(color: Colors.grey.shade600),
                           ),
                           Form(
@@ -133,11 +141,14 @@ class _LoginViewState extends State<LoginView> {
         ),
         bottomNavigationBar: BottomNavWrapper(
           child: FilledButton(
-            onPressed: () => _sendOTP(context),
+            onPressed: () => _onContinue(context),
             child: BlocBuilder<AuthCubit, AuthState>(
+              buildWhen: (_, state) =>
+              state is AuthLoading || state is AuthInitial || state is AuthFailure,
               builder: (_, state) {
                 if (state is AuthLoading) return const LoadingProgress();
-                return Text("continue".tr());
+                if (state is AuthSuccess) Navigator.of(context).pushNamed(RoutePath.collection);
+                return Text('continue'.tr());
               },
             ),
           ),
@@ -146,19 +157,19 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Future<void> _sendOTP(BuildContext context) async {
-    if (_formKey.currentState!.validate()) {
-      context.read<AuthCubit>().phone = "$_countryCode${_controller.text}";
-      await context.read<AuthCubit>().sendOTP();
-    } else {
+  Future<void> _onContinue(BuildContext context) async {
+    if (!_formKey.currentState!.validate()) {
       setState(() => _autovalidate = AutovalidateMode.always);
+      return;
     }
+    context.read<AuthCubit>().phone = '$_countryCode${_controller.text}';
+    await context.read<AuthCubit>().sendOtp();
   }
 
   String? _validatePhone(String? value) {
     if (value == null || value.isEmpty) return 'Phone number is required';
     if (!RegExp(r'^[1-9][0-9]{7,14}$').hasMatch(value)) {
-      return 'Enter number without leading 0 or + (8-15 digits)';
+      return 'Enter number without leading 0 or + (8–15 digits)';
     }
     return null;
   }

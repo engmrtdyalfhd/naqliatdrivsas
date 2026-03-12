@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../core/helper/constant.dart';
 import '../../../../core/helper/extension.dart';
-import '../../../auth/data/user_truck_model.dart';
+import '../../../auth/data/model/user_truck_model.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

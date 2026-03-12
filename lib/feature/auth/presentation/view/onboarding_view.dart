@@ -1,12 +1,14 @@
-import 'package:naqliatdrivsas/core/helper/extension.dart';
-
-import '../widget/lang_option.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:flutter/material.dart';
-import '../widget/onboarding_hey.dart';
-import '../../../../core/helper/constant.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:naqliatdrivsas/feature/auth/presentation/widget/lang_option.dart';
+import 'package:naqliatdrivsas/feature/auth/presentation/widget/onboarding_hey.dart';
+
+
 import '../../../../core/common/widget/bottom_nav_wrapper.dart';
+import '../../../../core/helper/constant.dart';
+import '../../../../core/helper/extension.dart';
+
 
 class OnboardingView extends StatelessWidget {
   const OnboardingView({super.key});
@@ -18,11 +20,11 @@ class OnboardingView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           child: Column(
-            crossAxisAlignment: .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(top: 16),
                   child: Image.asset(ImgPath.logo, width: 175, height: 175),
                 ),
               ),
@@ -33,8 +35,11 @@ class OnboardingView extends StatelessWidget {
                 children: [
                   const Icon(Iconsax.language_circle),
                   Text(
-                    "lang".tr(),
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    'lang'.tr(),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ],
               ),
@@ -42,24 +47,9 @@ class OnboardingView extends StatelessWidget {
               Row(
                 spacing: 9,
                 children: [
-                  LangChoice(
-                    flag: "🇸🇦",
-                    onTap: () async {
-                      // await context.setLocale(Locale("ar"));
-                    },
-                  ),
-                  LangChoice(
-                    flag: "🇵🇰",
-                    onTap: () async {
-                      // await context.setLocale(Locale("ar"));
-                    },
-                  ),
-                  LangChoice(
-                    flag: "🇺🇸",
-                    onTap: () async {
-                      // await context.setLocale(Locale("en"));
-                    },
-                  ),
+                  LangChoice(flag: '🇸🇦', onTap: () {}),
+                  LangChoice(flag: '🇵🇰', onTap: () {}),
+                  LangChoice(flag: '🇺🇸', onTap: () {}),
                 ],
               ),
             ],
@@ -69,7 +59,7 @@ class OnboardingView extends StatelessWidget {
       bottomNavigationBar: BottomNavWrapper(
         child: FilledButton(
           onPressed: () => context.pushNamed(RoutePath.login),
-          child: Text("continue".tr()),
+          child: Text('continue'.tr()),
         ),
       ),
     );

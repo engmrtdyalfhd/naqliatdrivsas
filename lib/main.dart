@@ -1,4 +1,3 @@
-import 'core/helper/firestore_seeder.dart';
 import 'core/helper/utils.dart';
 import 'core/helper/app_route.dart';
 import 'core/theme/light_theme.dart';

@@ -1,17 +1,17 @@
-import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../../core/theme/colory.dart';
 
 class CountryCodePicker extends StatelessWidget {
-  final String selectedCode;
-  final void Function()? onTap;
-
   const CountryCodePicker({
     super.key,
-    required this.onTap,
     required this.selectedCode,
+    required this.onTap,
   });
+
+  final String selectedCode;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,10 @@ class CountryCodePicker extends StatelessWidget {
         ),
         child: Row(
           spacing: 16,
-          children: [Text(selectedCode), Icon(Iconsax.arrow_down_1, size: 16)],
+          children: [
+            Text(selectedCode),
+            const Icon(Iconsax.arrow_down_1, size: 16),
+          ],
         ),
       ),
     );
@@ -37,49 +40,47 @@ class CountryCodePicker extends StatelessWidget {
 class CountryCodeBottomSheet extends StatelessWidget {
   const CountryCodeBottomSheet({super.key});
 
+  static const List<Map<String, String>> _countries = [
+    {'name': 'Saudi Arabia', 'code': '+966', 'flag': '🇸🇦'},
+    {'name': 'Egypt', 'code': '+20', 'flag': '🇪🇬'},
+    {'name': 'Yemen', 'code': '+967', 'flag': '🇾🇪'},
+  ];
+
   @override
   Widget build(BuildContext context) {
-    const List<Map<String, String>> countries = [
-      {'name': 'Saudi Arabia', 'code': '+966', 'flag': '🇸🇦'},
-      {'name': 'Egypt', 'code': '+20', 'flag': '🇪🇬'},
-      {'name': 'Yemen', 'code': '+967', 'flag': '🇾🇪'},
-      // {'name': 'UAE', 'code': '+971', 'flag': '🇦🇪'},
-      // {'name': 'USA', 'code': '+1', 'flag': '🇺🇸'},
-    ];
-
     return SafeArea(
       child: Column(
-        mainAxisSize: .min,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Text(
-              "Select country",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              'Select country',
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
           Flexible(
             child: ListView.separated(
               shrinkWrap: true,
-              padding: const EdgeInsets.all(16),
-              itemCount: countries.length,
-              separatorBuilder: (_, _) => const SizedBox(height: 6),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              itemCount: _countries.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 6),
               itemBuilder: (context, index) {
-                final country = countries[index];
-
+                final country = _countries[index];
                 return ListTile(
                   leading: Text(
                     country['flag']!,
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
-                  title: Text(country['name']!, style: TextStyle(fontSize: 13)),
+                  title: Text(
+                    country['name']!,
+                    style: const TextStyle(fontSize: 13),
+                  ),
                   trailing: Text(
                     country['code']!,
-                    style: TextStyle(fontSize: 13),
+                    style: const TextStyle(fontSize: 13),
                   ),
-                  onTap: () {
-                    Navigator.pop(context, country['code']);
-                  },
+                  onTap: () => Navigator.pop(context, country['code']),
                 );
               },
             ),

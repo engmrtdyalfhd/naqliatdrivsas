@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/common/error/failure.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../auth/data/user_truck_model.dart';
+import '../../../auth/data/model/user_truck_model.dart';
 
 abstract class CollectionRepo {
   Future<Either<Failure, CollectionModel>> getCollectionData();

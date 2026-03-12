@@ -1,13 +1,4 @@
-import '../../collection/data/model/carrier_model.dart';
-
 final class UserTruckModel {
-  int truckId;
-  String truckName;
-  int carrierId;
-  String carrierType;
-  String? featureName;
-  int? featureId;
-
   UserTruckModel({
     required this.truckId,
     required this.truckName,
@@ -17,13 +8,20 @@ final class UserTruckModel {
     required this.featureId,
   });
 
+  int truckId;
+  String truckName;
+  int carrierId;
+  String carrierType;
+  String? featureName;
+  int? featureId;
+
   factory UserTruckModel.fromJson(Map<String, dynamic> json) => UserTruckModel(
-    truckId: json['truck_id'],
-    carrierId: json['carrier_id'],
-    featureId: json['feature_id'],
-    truckName: json['truck_name'],
-    carrierType: json['carrier_type'],
-    featureName: json['feature_name'],
+    truckId: json['truck_id'] as int,
+    carrierId: json['carrier_id'] as int,
+    featureId: json['feature_id'] as int?,
+    truckName: json['truck_name'] as String,
+    carrierType: json['carrier_type'] as String,
+    featureName: json['feature_name'] as String?,
   );
 
   Map<String, dynamic> toJson() => {

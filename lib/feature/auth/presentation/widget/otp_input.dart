@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:naqliatdrivsas/feature/auth/presentation/cubit/auth_cubit.dart';
 import 'package:pinput/pinput.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/colory.dart';
-import '../../manager/auth_cubit.dart';
 
 class OtpInput extends StatefulWidget {
   const OtpInput({super.key});
