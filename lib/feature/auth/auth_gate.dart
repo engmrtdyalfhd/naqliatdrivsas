@@ -2,23 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:naqliatdrivsas/feature/collection/data/repo/collection_repo.dart';
-import 'package:naqliatdrivsas/feature/collection/manager/collection_cubit.dart';
-import 'package:naqliatdrivsas/feature/collection/ui/view/collection_view.dart';
+import 'package:naqliatdrivsas/feature/collection/domain/usecase/get_collection_usecase.dart';
+import 'package:naqliatdrivsas/feature/collection/domain/usecase/update_truck_usecase.dart';
+import 'package:naqliatdrivsas/feature/collection/presentation/cubit/collection_cubit.dart';
+import 'package:naqliatdrivsas/feature/collection/presentation/view/collection_view.dart';
 import 'package:naqliatdrivsas/feature/home/ui/view/home_view.dart';
 
 import '../../../core/helper/constant.dart';
 import '../../../core/service/service_locator.dart';
 import 'data/model/user_model.dart';
 
-/// Entry point after launch.
-///
-/// KEY DESIGN RULE: AuthGate must NEVER own AuthCubit.
-/// When the user is unauthenticated, it redirects to the "/login" route.
-/// The Login route creates and owns the AuthCubit via its own BlocProvider,
-/// which keeps the cubit alive for the full OTP flow — including the async
-/// Firestore calls in _postSignIn() — without being torn down early by a
-/// Firebase authStateChanges() rebuild.
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
 
@@ -74,7 +67,7 @@ class AuthGate extends StatelessWidget {
 
             // Driver signed in but hasn't set up their truck yet.
             return BlocProvider<CollectionCubit>(
-              create: (_) => CollectionCubit(getIt<CollectionRepoImpl>()),
+              create: (_) => CollectionCubit(getCollection: getIt<GetCollectionUseCase>(),updateTruck: getIt<UpdateTruckUseCase>()),
               child: const CollectionView(),
             );
           },

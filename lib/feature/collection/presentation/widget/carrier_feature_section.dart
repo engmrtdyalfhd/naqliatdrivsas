@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../manager/collection_cubit.dart';
+import '../../presentation/cubit/collection_cubit.dart';
 
-class CarrierSection extends StatelessWidget {
-  const CarrierSection({super.key});
+class CarrierFeatureSection extends StatelessWidget {
+  const CarrierFeatureSection({super.key});
 
   static const _primaryColor = Color(0xFF1A1A2E);
   static const _accentColor = Color(0xFFE94560);
@@ -13,16 +13,39 @@ class CarrierSection extends StatelessWidget {
     return BlocBuilder<CollectionCubit, CollectionState>(
       builder: (_, state) {
         final cubit = context.read<CollectionCubit>();
-        final selected = cubit.userSelection.carrierId;
+        final selected = cubit.userSelection.featureId;
 
-        if (cubit.carriers.isEmpty) {
+        if (cubit.features.isEmpty) {
           return Padding(
             padding: const EdgeInsets.all(24),
-            child: Center(
-              child: Text(
-                'No carriers available for selected truck',
-                style: TextStyle(color: Colors.grey.shade500, fontSize: 13),
-              ),
+            child: Column(
+              children: [
+                Container(
+                  width: 56,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    color: Colors.green.shade50,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.check_circle_outline_rounded,
+                      color: Colors.green.shade600, size: 28),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'No specific feature required',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey.shade700,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'This carrier type has no additional options.\nYou can proceed to confirm.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+                ),
+              ],
             ),
           );
         }
@@ -31,15 +54,16 @@ class CarrierSection extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-          itemCount: cubit.carriers.length,
+          itemCount: cubit.features.length,
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
-            final carrier = cubit.carriers[index];
-            final isSelected = selected == carrier.id;
+            final feature = cubit.features[index];
+            final isSelected = selected == feature.id;
             return _SelectionTile(
-              label: carrier.carrierType,
+              label: feature.name,
               isSelected: isSelected,
-              onTap: () => context.read<CollectionCubit>().selectCarrier(carrier),
+              onTap: () =>
+                  context.read<CollectionCubit>().selectFeature(feature),
               accentColor: _accentColor,
               primaryColor: _primaryColor,
             );

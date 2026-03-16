@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../data/model/truck_model.dart';
-import '../../manager/collection_cubit.dart';
+import '../../presentation/cubit/collection_cubit.dart';
 
-class TruckSection extends StatelessWidget {
-  final List<TruckModel> trucks;
-  const TruckSection({super.key, required this.trucks});
+class CarrierSection extends StatelessWidget {
+  const CarrierSection({super.key});
 
   static const _primaryColor = Color(0xFF1A1A2E);
   static const _accentColor = Color(0xFFE94560);
@@ -13,24 +11,35 @@ class TruckSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CollectionCubit, CollectionState>(
-      buildWhen: (_, current) => current is TruckSelected,
-      builder: (context, state) {
-        final selected =
-            context.read<CollectionCubit>().userSelection.truckId;
+      builder: (_, state) {
+        final cubit = context.read<CollectionCubit>();
+        final selected = cubit.userSelection.carrierId;
+
+        if (cubit.carriers.isEmpty) {
+          return Padding(
+            padding: const EdgeInsets.all(24),
+            child: Center(
+              child: Text(
+                'No carriers available for selected truck',
+                style: TextStyle(color: Colors.grey.shade500, fontSize: 13),
+              ),
+            ),
+          );
+        }
+
         return ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-          itemCount: trucks.length,
+          itemCount: cubit.carriers.length,
           separatorBuilder: (_, __) => const SizedBox(height: 8),
           itemBuilder: (_, index) {
-            final truck = trucks[index];
-            final isSelected = selected == truck.id;
+            final carrier = cubit.carriers[index];
+            final isSelected = selected == carrier.id;
             return _SelectionTile(
-              label: truck.truckName,
+              label: carrier.carrierType,
               isSelected: isSelected,
-              onTap: () =>
-                  context.read<CollectionCubit>().selectTruck(truck),
+              onTap: () => context.read<CollectionCubit>().selectCarrier(carrier),
               accentColor: _accentColor,
               primaryColor: _primaryColor,
             );
@@ -41,7 +50,6 @@ class TruckSection extends StatelessWidget {
   }
 }
 
-// ── Shared tile ─────────────────────────────────────────────
 class _SelectionTile extends StatelessWidget {
   final String label;
   final bool isSelected;
@@ -84,8 +92,7 @@ class _SelectionTile extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: isSelected ? accentColor : Colors.transparent,
                   border: Border.all(
-                    color:
-                    isSelected ? accentColor : Colors.grey.shade400,
+                    color: isSelected ? accentColor : Colors.grey.shade400,
                     width: 2,
                   ),
                 ),

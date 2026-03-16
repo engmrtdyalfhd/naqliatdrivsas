@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:naqliatdrivsas/feature/auth/presentation/cubit/auth_cubit.dart';
-import 'package:naqliatdrivsas/feature/auth/presentation/view/login_view.dart';
 
 import '../../feature/auth/auth_gate.dart';
-
-import '../../feature/collection/data/repo/collection_repo.dart';
-import '../../feature/collection/manager/collection_cubit.dart';
-import '../../feature/collection/ui/view/collection_view.dart';
+import '../../feature/auth/presentation/cubit/auth_cubit.dart';
+import '../../feature/auth/presentation/view/login_view.dart';
+import '../../feature/collection/presentation/cubit/collection_cubit.dart';
+import '../../feature/collection/presentation/view/collection_view.dart';
 import '../../feature/location/data/repo/location_repo.dart';
 import '../../feature/location/manager/location_cubit.dart';
 import '../../feature/location/ui/screen/location_screen.dart';
@@ -25,7 +23,7 @@ class AppRoutes {
         child: const AuthGate(),
       ),
 
-
+    // LoginView owns AuthCubit for the full OTP flow.
       RoutePath.login => CustomPageRoute(
         child: BlocProvider<AuthCubit>(
           create: (_) => getIt<AuthCubit>(),
@@ -33,9 +31,10 @@ class AppRoutes {
         ),
       ),
 
+    // CollectionCubit is now fully injected via getIt.
       RoutePath.collection => CustomPageRoute(
         child: BlocProvider<CollectionCubit>(
-          create: (_) => CollectionCubit(getIt<CollectionRepoImpl>()),
+          create: (_) => getIt<CollectionCubit>(),
           child: const CollectionView(),
         ),
       ),

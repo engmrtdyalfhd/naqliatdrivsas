@@ -1,28 +1,22 @@
 import 'truck_model.dart';
 
-class CollectionModel {
-  final List<TruckModel> en, ar, ur;
-  const CollectionModel({required this.en, required this.ar, required this.ur});
+final class CollectionModel {
+  const CollectionModel({
+    required this.en,
+    required this.ar,
+    required this.ur,
+  });
+
+  final List<TruckModel> en;
+  final List<TruckModel> ar;
+  final List<TruckModel> ur;
 
   factory CollectionModel.fromJson(Map<String, dynamic> json) {
-    return CollectionModel(
-      en: (json['en'] as List<dynamic>)
-          .map((e) => TruckModel.fromJson(e))
-          .toList(),
-      ar: (json['ar'] as List<dynamic>)
-          .map((e) => TruckModel.fromJson(e))
-          .toList(),
-      ur: (json['ur'] as List<dynamic>)
-          .map((e) => TruckModel.fromJson(e))
-          .toList(),
-    );
-  }
+    List<TruckModel> _parse(String key) =>
+        (json[key] as List<dynamic>? ?? [])
+            .map((e) => TruckModel.fromJson(e as Map<String, dynamic>))
+            .toList();
 
-  Map<String, dynamic> toJson() {
-    return {
-      'en': en.map((e) => e.toJson()).toList(),
-      'ar': ar.map((e) => e.toJson()).toList(),
-      'ur': ur.map((e) => e.toJson()).toList(),
-    };
+    return CollectionModel(en: _parse('en'), ar: _parse('ar'), ur: _parse('ur'));
   }
 }
